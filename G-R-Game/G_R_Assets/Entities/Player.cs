@@ -13,7 +13,9 @@ namespace G_R_Game.G_R_Assets.Entities
         {
             position = pos;
             speed = Vector2.Zero;
-            
+            hitboxType = HitboxType.Circular;
+            textureDimensions = new Vector2(100, 100);
+            hitboxDimensions = new Vector2(75, 75);
         }
         public void LoadTexture(Texture2D texture)
         {
