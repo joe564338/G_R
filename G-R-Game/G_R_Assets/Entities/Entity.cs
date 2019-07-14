@@ -4,6 +4,8 @@ using System.Text;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using VelcroPhysics.Dynamics;
+using VelcroPhysics.Factories;
 
 namespace G_R_Game.G_R_Assets.Entities
 {
@@ -12,41 +14,42 @@ namespace G_R_Game.G_R_Assets.Entities
         Rectangular,
         Circular
     }
+    
     abstract class Entity
     {
-        protected Vector2 position;
-        protected Vector2 speed;
+        protected Body physicsBody;
+        //protected Vector2 position;
+        //protected Vector2 speed;
         protected Texture2D texture = null;
-        protected HitboxType hitboxType;
+        //protected HitboxType hitboxType;
         protected Vector2 textureDimensions;
-        protected Vector2 hitboxDimensions;
+        //protected Vector2 hitboxDimensions;
         public Texture2D GetTexture()
         {
             return texture;
         }
         public Vector2 GetPosition()
         {
-            return position;
+            return physicsBody.Position;
         }
-        public void UpdatePosition()
+        
+        public void ApplyImpulse(Vector2 force)
         {
-            position += speed;
-        }
-        public void UpdateSpeed(Vector2 speed)
-        {
-            this.speed = speed;
+            physicsBody.ApplyLinearImpulse(force);
         }
         public Vector2 GetTextureDimensions()
         {
             return textureDimensions;
         }
-        public Vector2 GetHitboxDimensions()
+        
+        
+        public Vector2 GetSpeed()
         {
-            return hitboxDimensions;
+            return physicsBody.LinearVelocity;
         }
-        public HitboxType GetHitboxType()
+        public void SetPosition(Vector2 position)
         {
-            return hitboxType;
+            physicsBody.Position = position;
         }
     }
     

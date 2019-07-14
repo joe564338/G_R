@@ -10,8 +10,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="G_R_Assets\SpatialGrid.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MonoGame.Content.Builder" Version="3.7.0.9" />
     <PackageReference Include="MonoGame.Framework.DesktopGL.Core" Version="3.7.0.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\VelcroPhysics-master\VelcroPhysics\VelcroPhysics.MonoGame.csproj" />
   </ItemGroup>
 
 </Project>

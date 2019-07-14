@@ -10,12 +10,18 @@ namespace G_R_Game.G_R_Assets
 {
     class World
     {
+        
         Player p1;
         List<Entity> entities;
-        public World()
+        VelcroPhysics.Dynamics.World physicsWorld;
+        
+        public World(int areaWidth, int areaHeight)
         {
-            p1 = new Player(new Vector2(200, 200));
+            physicsWorld = new VelcroPhysics.Dynamics.World(Vector2.Zero);
+            p1 = new Player(new Vector2(2.5f, 2.5f), physicsWorld);
             entities = new List<Entity>();
+            entities.Add(p1);
+            
         }
         public void AddEntity(Entity entity)
         {
@@ -37,13 +43,13 @@ namespace G_R_Game.G_R_Assets
         {
             return p1.GetPosition();
         }
-        public void Update()
+        public void Update(float deltaTime)
         {
-            p1.UpdatePosition();
+            physicsWorld.Step(deltaTime);
         }
-        public void UpdatePlayerSpeed(Vector2 speed)
+        public void ApplyImpulseToPlayer(Vector2 impulse)
         {
-            p1.UpdateSpeed(speed);
+            p1.ApplyImpulse(impulse);
         }
         public Vector2 GetPlayerTextureDimensions()
         {
