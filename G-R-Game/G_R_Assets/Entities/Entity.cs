@@ -18,12 +18,11 @@ namespace G_R_Game.G_R_Assets.Entities
     abstract class Entity
     {
         protected Body physicsBody;
-        //protected Vector2 position;
-        //protected Vector2 speed;
+        public string label;
         protected Texture2D texture = null;
-        //protected HitboxType hitboxType;
+        
         protected Vector2 textureDimensions;
-        //protected Vector2 hitboxDimensions;
+        protected Vector2 origin;
         public Texture2D GetTexture()
         {
             return texture;
@@ -50,6 +49,18 @@ namespace G_R_Game.G_R_Assets.Entities
         public void SetPosition(Vector2 position)
         {
             physicsBody.Position = position;
+        }
+        public void LoadTexture(Texture2D texture)
+        {
+            this.texture = texture;
+        }
+        public Vector2 GetOrigin()
+        {
+            return origin;
+        }
+        public float GetRotation()
+        {
+            return physicsBody.Rotation;
         }
     }
     

@@ -14,13 +14,15 @@ namespace G_R_Game.G_R_Assets
         Player p1;
         List<Entity> entities;
         VelcroPhysics.Dynamics.World physicsWorld;
-        
+        Wall wall;
         public World(int areaWidth, int areaHeight)
         {
             physicsWorld = new VelcroPhysics.Dynamics.World(Vector2.Zero);
-            p1 = new Player(new Vector2(2.5f, 2.5f), physicsWorld);
+            p1 = new Player(new Vector2(200, 200), physicsWorld);
             entities = new List<Entity>();
             entities.Add(p1);
+            wall = new Wall(new Vector2(200, 200), new Vector2(300, 700), physicsWorld);
+            entities.Add(wall);
             
         }
         public void AddEntity(Entity entity)

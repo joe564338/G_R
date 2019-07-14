@@ -38,7 +38,21 @@ namespace G_R_Game
             spriteBatch = new SpriteBatch(GraphicsDevice);
             ConvertUnits.SetDisplayUnitToSimUnitRatio(64f);
             // TODO: use this.Content to load your game content here
-            world.LoadPlayerTexture(this.Content.Load<Texture2D>("Circleplaceholder"));
+            //world.LoadPlayerTexture(this.Content.Load<Texture2D>("Circleplaceholder"));
+            foreach(Entity e in world.GetEntities())
+            {
+                if (e.label.Equals("player"))
+                {
+                    
+                    e.LoadTexture(this.Content.Load<Texture2D>("Circleplaceholder"));
+                }
+                else if (e.label.Equals("wall"))
+                {
+                    
+                    e.LoadTexture(this.Content.Load<Texture2D>("WallTexture"));
+                }
+                
+            }
         }
 
         protected override void Update(GameTime gameTime)
@@ -99,12 +113,15 @@ namespace G_R_Game
             spriteBatch.Begin();
             foreach(Entity e in world.GetEntities())
             {
-                spriteBatch.Draw(e.GetTexture(),
-                    new Rectangle((int)ConvertUnits.ToDisplayUnits(e.GetPosition().X), 
-                    (int)ConvertUnits.ToDisplayUnits(e.GetPosition().Y), 
-                    (int)e.GetTextureDimensions().X, 
-                    (int)e.GetTextureDimensions().Y), 
-                    Color.White);
+                if (e.label.Equals("wall"))
+                {
+                    spriteBatch.Draw(e.GetTexture(), ConvertUnits.ToDisplayUnits(e.GetPosition()) - e.GetOrigin(), null, Color.White, e.GetRotation(), e.GetOrigin(), .2f, SpriteEffects.None, 0f);
+                }
+                else if (e.label.Equals("player"))
+                {
+                    spriteBatch.Draw(e.GetTexture(), ConvertUnits.ToDisplayUnits(e.GetPosition()) -e.GetOrigin(), null, Color.White, e.GetRotation(), e.GetOrigin(), .95f, SpriteEffects.None, 0f);
+                }
+                
             }
             
             spriteBatch.End();

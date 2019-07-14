@@ -13,17 +13,15 @@ namespace G_R_Game.G_R_Assets.Entities
         
         public Player(Vector2 pos, VelcroPhysics.Dynamics.World world)
         {
-            physicsBody = BodyFactory.CreateCircle(world, ConvertUnits.ToSimUnits(100), 1f, pos, BodyType.Dynamic);
+            physicsBody = BodyFactory.CreateCircle(world, ConvertUnits.ToSimUnits(100f), 1f, ConvertUnits.ToSimUnits(pos), BodyType.Dynamic);
             physicsBody.LinearDamping = 10f;
-            
-            
+
+            label = "player";
             textureDimensions = new Vector2(100, 100);
+            origin = textureDimensions / 2;
             
         }
-        public void LoadTexture(Texture2D texture)
-        {
-            this.texture = texture;
-        }
+        
         
     }
 }

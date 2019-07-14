@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using VelcroPhysics.Factories;
 using VelcroPhysics.Dynamics;
+using VelcroPhysics.Utilities;
 
 namespace G_R_Game.G_R_Assets.Entities
 {
@@ -15,14 +16,11 @@ namespace G_R_Game.G_R_Assets.Entities
         {
            
             textureDimensions = dimensions;
-
-
-            physicsBody = BodyFactory.CreateBody(world, position, 0, BodyType.Static);
+            label = "wall";
+            origin = textureDimensions / 2;
+            physicsBody = BodyFactory.CreateRectangle(world, ConvertUnits.ToSimUnits(dimensions.X), ConvertUnits.ToSimUnits(dimensions.Y), 10, ConvertUnits.ToSimUnits(position), 0, BodyType.Static, null);
         }
-        public void LoadTexture(Texture2D texture)
-        {
-            this.texture = texture;
-        }
+        
 
     }
 }
