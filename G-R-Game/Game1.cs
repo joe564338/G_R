@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using VelcroPhysics.Utilities;
 using G_R_Game.G_R_Assets;
+using G_R_Game.G_R_Assets.Entities;
 namespace G_R_Game
 {
     public class Game1 : Game
@@ -96,12 +97,16 @@ namespace G_R_Game
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
-            spriteBatch.Draw(world.GetPlayerTexture(), 
-                new Rectangle((int)ConvertUnits.ToDisplayUnits(world.GetPlayerPosition().X), 
-                (int)ConvertUnits.ToDisplayUnits(world.GetPlayerPosition().Y), 
-                (int)world.GetPlayerTextureDimensions().X, 
-                (int)world.GetPlayerTextureDimensions().Y), 
-                Color.White);
+            foreach(Entity e in world.GetEntities())
+            {
+                spriteBatch.Draw(e.GetTexture(),
+                    new Rectangle((int)ConvertUnits.ToDisplayUnits(e.GetPosition().X), 
+                    (int)ConvertUnits.ToDisplayUnits(e.GetPosition().Y), 
+                    (int)e.GetTextureDimensions().X, 
+                    (int)e.GetTextureDimensions().Y), 
+                    Color.White);
+            }
+            
             spriteBatch.End();
             base.Draw(gameTime);
         }
