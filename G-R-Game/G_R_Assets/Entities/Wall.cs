@@ -17,7 +17,7 @@ namespace G_R_Game.G_R_Assets.Entities
            
             textureDimensions = dimensions;
             label = "wall";
-            origin = textureDimensions / 2;
+            origin = textureDimensions / 1.85f;
             physicsBody = BodyFactory.CreateRectangle(world, ConvertUnits.ToSimUnits(dimensions.X), ConvertUnits.ToSimUnits(dimensions.Y), 10, ConvertUnits.ToSimUnits(position), 0, BodyType.Static, null);
         }
         
