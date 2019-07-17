@@ -62,6 +62,7 @@ namespace G_R_Game.G_R_Assets.Entities
         {
             return physicsBody.Rotation;
         }
+        public abstract void PrimaryAttack(VelcroPhysics.Dynamics.World world);
     }
     
 }

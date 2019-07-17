@@ -13,7 +13,7 @@ namespace G_R_Game
         long lastUpdate = System.DateTimeOffset.Now.ToUnixTimeMilliseconds();
         long currentTime = System.DateTimeOffset.Now.ToUnixTimeMilliseconds();
         World world;
-        int windowWidth = 800;
+        int windowWidth = 1200;
         int windowHeight = 600;
         public Game1()
         {
@@ -92,7 +92,10 @@ namespace G_R_Game
                 playerImpulse.Y = 5.5f * -GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.Y;
             }
             world.ApplyImpulseToPlayer(playerImpulse);
-
+            if (Keyboard.GetState().IsKeyDown(Keys.B))
+            {
+                world.PlayerPrimaryAttack();
+            }
             /*if ((currentTime- lastUpdate) > (1000 / 60))
             {
                 

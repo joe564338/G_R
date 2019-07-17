@@ -15,6 +15,7 @@ namespace G_R_Game.G_R_Assets
         List<Entity> entities;
         VelcroPhysics.Dynamics.World physicsWorld;
         Wall wall;
+        Wall wall2;
         public World(int areaWidth, int areaHeight)
         {
             physicsWorld = new VelcroPhysics.Dynamics.World(Vector2.Zero);
@@ -22,7 +23,9 @@ namespace G_R_Game.G_R_Assets
             entities = new List<Entity>();
             entities.Add(p1);
             wall = new Wall(new Vector2(200, 200), new Vector2(300, 700), physicsWorld);
+            wall2 = new Wall(new Vector2(200, 200), new Vector2(600, 300), physicsWorld);
             entities.Add(wall);
+            entities.Add(wall2);
             
         }
         public void AddEntity(Entity entity)
@@ -60,6 +63,10 @@ namespace G_R_Game.G_R_Assets
         public List<Entity> GetEntities()
         {
             return entities;
+        }
+        public void PlayerPrimaryAttack()
+        {
+            p1.PrimaryAttack(physicsWorld);
         }
     }
 }
