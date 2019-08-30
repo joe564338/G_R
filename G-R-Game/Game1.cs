@@ -43,7 +43,7 @@ namespace G_R_Game
             {
                 if (e.label.Equals("player"))
                 {
-                    
+                    ((Player)e).LoadPlayerDamageBoxTexture(this.Content.Load<Texture2D>("garbageattack"));
                     e.LoadTexture(this.Content.Load<Texture2D>("Circleplaceholder"));
                 }
                 else if (e.label.Equals("wall"))
@@ -51,6 +51,7 @@ namespace G_R_Game
                     
                     e.LoadTexture(this.Content.Load<Texture2D>("WallTexture"));
                 }
+                
                 
             }
         }
@@ -92,16 +93,11 @@ namespace G_R_Game
                 playerImpulse.Y = 5.5f * -GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.Y;
             }
             world.ApplyImpulseToPlayer(playerImpulse);
-            if (Keyboard.GetState().IsKeyDown(Keys.B))
+            if (Keyboard.GetState().IsKeyDown(Keys.B) || GamePad.GetState(PlayerIndex.One).IsButtonDown(Buttons.B))
             {
                 world.PlayerPrimaryAttack();
             }
-            /*if ((currentTime- lastUpdate) > (1000 / 60))
-            {
-                
-                lastUpdate = currentTime;
-                world.Update();
-            }*/
+            
             world.Update((float) gameTime.ElapsedGameTime.TotalMilliseconds * 0.001f);
             // TODO: Add your update logic here
 
@@ -122,6 +118,8 @@ namespace G_R_Game
                 }
                 else if (e.label.Equals("player"))
                 {
+                    Vector2 deletelaterfixtureorigin = new Vector2(15, 45);
+                    spriteBatch.Draw(((Player)e).damageBoxTexture, ConvertUnits.ToDisplayUnits(((Player)e).damageBox.Body.Position ) - deletelaterfixtureorigin, null, Color.White, ((Player)e).damageBox.Body.Rotation, deletelaterfixtureorigin, .95f, SpriteEffects.None, 0f);
                     spriteBatch.Draw(e.GetTexture(), ConvertUnits.ToDisplayUnits(e.GetPosition()) -e.GetOrigin(), null, Color.White, e.GetRotation(), e.GetOrigin(), .95f, SpriteEffects.None, 0f);
                 }
                 

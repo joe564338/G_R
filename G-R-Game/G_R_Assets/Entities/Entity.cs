@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using VelcroPhysics.Dynamics;
 using VelcroPhysics.Factories;
-
+using VelcroPhysics.Collision.Handlers;
 namespace G_R_Game.G_R_Assets.Entities
 {
     enum HitboxType
@@ -63,6 +63,18 @@ namespace G_R_Game.G_R_Assets.Entities
             return physicsBody.Rotation;
         }
         public abstract void PrimaryAttack(VelcroPhysics.Dynamics.World world);
+        public abstract void EndPrimaryAttack(VelcroPhysics.Dynamics.World world);
+        public List<Fixture> GetActiveAttackHitBoxes()
+        {
+            List<Fixture> activeAttacks = new List<Fixture>();
+            foreach(Fixture f in physicsBody.FixtureList)
+            {
+                if (f.IsSensor)
+                {
+                    activeAttacks.Add(f);
+                }
+            }
+            return activeAttacks;
+        }
     }
-    
 }

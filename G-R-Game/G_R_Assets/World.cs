@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using G_R_Game.G_R_Assets.Entities;
+using VelcroPhysics.Dynamics;
 namespace G_R_Game.G_R_Assets
 {
     class World
@@ -51,6 +52,13 @@ namespace G_R_Game.G_R_Assets
         public void Update(float deltaTime)
         {
             physicsWorld.Step(deltaTime);
+            foreach(Entity e in entities)
+            {
+                foreach(Fixture f in e.GetActiveAttackHitBoxes())
+                {
+                    //f.
+                }
+            }
         }
         public void ApplyImpulseToPlayer(Vector2 impulse)
         {

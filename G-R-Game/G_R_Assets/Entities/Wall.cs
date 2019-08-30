@@ -24,6 +24,10 @@ namespace G_R_Game.G_R_Assets.Entities
         {
             throw new NotImplementedException();
         }
+        public override void EndPrimaryAttack(VelcroPhysics.Dynamics.World world)
+        {
+            throw new NotImplementedException();
+        }
 
     }
 }
